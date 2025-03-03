@@ -1,0 +1,18 @@
+# 26-yacheyki
+# k - количество ячеек
+cell=[[] for i in range(k)]
+c = 0
+mn = cmn = 0
+for i in a:
+    for j in range(k):
+        if (not cell[j]) or (i[0] > cell[j][-1][1]):
+            cell[j].append(i)
+            c += 1
+            if i[0] > mn:
+                mn = i[0]
+                cmx = j+1
+            break
+for i in cell:
+    print(i)
+print(c)
+print(c, cmx)
