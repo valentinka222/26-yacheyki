@@ -1,0 +1,33 @@
+f = open('26__1ux52.txt')
+n = int(f.readline())
+a = sorted([[int(i.split()[0]), int(i.split()[1])+int(i.split()[0]), i.split()[2]] for i in f]) # разделение на числа и букву, сортировка по числам
+cell_a = [[] for i in range(80)] # парк. места
+cell_b = [[] for i in range(20)] # парк. места
+for i in a:
+    if i[-1] == 'B':
+        for j in range(20):
+            if not(cell_b[j]) or (i[0] > cell_b[j][-1][1]):
+                cell_b[j].append(i)
+                break
+    elif i[-1] == 'A':
+        q = 0
+        for j in range(80):
+            if not(cell_a[j]) or (i[0] > cell_a[j][-1][1]):
+                cell_a[j].append(i)
+                q = 1
+                break
+        if q == 0:
+            for j in range(20):
+                if not(cell_b[j]) or (i[0] > cell_b[j][-1][1]):
+                    cell_b[j].append(i)
+                    break
+c = 705
+for i in range(1, len(cell_b)+1):
+    q = cell_b[i-1]
+    for j in q:
+        if j[-1] == 'B':
+            print(j, j[-1])
+            c += 1
+
+print(n-854)
+print(c)
